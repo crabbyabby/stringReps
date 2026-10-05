@@ -25,8 +25,12 @@ def countNucleotides(text: str) -> dict[str, int]:
             counts.update({"T": currentNum+1})
         x=x+1
 
-    return counts
+    answer = ""
+    for value in counts.values():
+        answer = answer + str(value) + " "
 
-keys = countNucleotides(genome).values();
+    return answer.strip()
 
-print(keys)
+# keys = countNucleotides(genome).values();
+
+# print(keys)
