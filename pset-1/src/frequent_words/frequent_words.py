@@ -1,21 +1,28 @@
 """Find the most frequent words of a given length in text."""
 
-from .pattern_count import PatternCount
+from pattern_count import PatternCount
 
+t = "CACTAAGCGCCACCGGCACTAAGCGTAAAAACACGTCAGGTGTCACTAAGCGCCACCGGCACTAAGCGTAAAAACACGTCAGGTGTCCACCGGCCACCGGCACTAAGCGGTCAGGTGTTAAAAACACCCACCGGGTCTCCTCCACTAAGCGTAAAAACACCCACCGGCCACCGGCCACCGGGTCAGGTGTCCACCGGCCACCGGTAAAAACACGTCTCCTCTAAAAACACGTCTCCTCGTCAGGTGTGTCTCCTCCACTAAGCGGTCAGGTGTTAAAAACACGTCTCCTCCCACCGGCCACCGGCACTAAGCGTAAAAACACCCACCGGCCACCGGCCACCGGGTCTCCTCGTCTCCTCCCACCGGGTCTCCTCCACTAAGCGCCACCGGTAAAAACACGTCAGGTGTGTCAGGTGTTAAAAACACCCACCGGTAAAAACACGTCTCCTCCACTAAGCGCACTAAGCGGTCAGGTGTCACTAAGCGGTCTCCTCGTCAGGTGTCCACCGGGTCTCCTCCCACCGGGTCAGGTGTTAAAAACACCCACCGGCCACCGGCACTAAGCGGTCTCCTCCACTAAGCGCCACCGGCCACCGGTAAAAACACGTCAGGTGTGTCAGGTGTTAAAAACACGTCTCCTCCCACCGGCACTAAGCGGTCAGGTGTTAAAAACACGTCAGGTGTCCACCGGCCACCGGTAAAAACACCCACCGGTAAAAACACGTCTCCTCTAAAAACACCCACCGGTAAAAACACTAAAAACACCACTAAGCGGTCTCCTCGTCTCCTCTAAAAACACCACTAAGCGCCACCGGCACTAAGCGTAAAAACAC"
+l = 13
 
 def FrequentWords(text: str, k: int) -> set[str]:
-    """Return all length-k substrings with the highest occurrence count.
 
-    Count overlapping, case-sensitive matches and include every tie once.
-    Assume k is a positive integer. Return an empty set if k exceeds the
-    length of text or text is empty.
+    frequentPatterns = set()
+    counts= []
+    i = 0
+    while i < len(text)-k:
+        pattern = text[i:i+k]
+        counts.append(PatternCount(text, pattern))
+        i = i+1
+    
+    maxCount = max(counts)
 
-    Example:
-        FrequentWords("ATAT", 2) returns {"AT"}.
-        FrequentWords("ATGC", 2) returns {"AT", "TG", "GC"}.
+    i = 0
+    while i < len(text)-k:
+        if(counts[i]== maxCount):
+            frequentPatterns.add(text[i:i+k])
+        i = i+1
+    
+    return frequentPatterns
 
-    PatternCount is already imported above. You can call
-    PatternCount(text, pattern) directly in your implementation.
-    """
-    # TODO: Implement this function.
-    raise NotImplementedError("Implement FrequentWords")
+print(FrequentWords(t, l))
