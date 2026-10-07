@@ -21,14 +21,11 @@ def frequentWords(text: str, k: int) -> set[str]:
             frequentPatterns.add(text[i:i+k])
         i = i+1
 
-    answer = ""
-    for item in frequentPatterns:
-        answer += str(item) + " "
-    return answer.strip()
+    return frequentPatterns
 
 
 
-print(frequentWords(t, l))
+
 
 
 # Potentially more efficient implementation start
