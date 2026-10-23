@@ -9,7 +9,7 @@ def findValue(kmer: str) -> int:
         
     return value
 
-def frequencyArray(rosalind: bool, text: str, k: int) -> list[int]:
+def frequencyArray(text: str, k: int) -> list[int]:
     """Return counts for all 4**k DNA k-mers in lexicographic order.
 
     Use alphabet order A, C, G, T. Include zero counts and count
@@ -34,16 +34,5 @@ def frequencyArray(rosalind: bool, text: str, k: int) -> list[int]:
         val = findValue(kmer)
         freqArray[val] += 1
 
-
-    if rosalind:
-        returned = ""
-        for i in range(len(freqArray)):
-            returned = returned + str(freqArray[i]) + " "
-        return returned.strip()
-    else:
-        return freqArray
+    return freqArray
     raise NotImplementedError("Implement frequencyArray for Rosalind BA1K.")
-
-
-
-print(frequencyArray(True, "GTGCCGTTACTCTCGACTCAGGGGCTTCAAACAGTCCCCGAGGTAACAGTGTTGCGAATCGGGTGCCGGAATTACTCAGGCGGACCAGGTCGTCCCAGCATCCAGTATTAATTTTGCACAGAGACCGTTCTACAGGCTCGGCGGAAGCACACTAGGGCTACCGGCGGGAAGACATAGGCACGACCGTACTTCGTTCCATGGTTTTATATTCCCTGAACATACAGAAAGTACGTGGCTTTAATGCCCTGACTATCCTCGAAACGCTTGATGATTCCTTGGTTTAGGTCCCAGACACTTACGACCCAGCGTATGATCCTTGGAGCGCCGTGCTAATCGAGCCACTCTACTGGACTGCCAATGACACTGGCATGGGCAAGATTGGGATTGCTGTGAATCGTCCGTAACCTTCAAATTCGTAAAAGCTAGCCTTCCCGCCCTGAATTTTGAGTAGGACGTGTGCCACTCCCGTACGTCGTCCATCATGCCCGAAAACTGCACGCCCAGTAACCCAAGTTGATAAGTTTCCTTTTCTGGTACATATTTAAGGGTTACCGATGCTAGGTATACAAAGCATACCGCCGTTCCCGCATTGGTCTTCTCTATTATGAGTCGCGGGATCCCGTGCTAAATGTAGGGAGTCTGTATTAGCTCCACTAGCCGAGCATTACGGATAATATCTATGTGTTTGGACGCCACTGTCGAGATCCGTTCG", 6))

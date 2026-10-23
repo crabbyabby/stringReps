@@ -35,6 +35,3 @@ def findClumps(genome: str, k: int, L: int, t: int) -> set[str]:
     return list(clumps)   
 
     raise NotImplementedError("Implement findClumps for Rosalind BA1E.")
-
-
-print(findClumps("CGGACTCGACAGATGTGAAGAAATGTGAAGACTGAGTGAAGAGAAGAGGAAACACGACACGACATTGCGACATAATGTACGAATGTAATGTGCCTATGGC", 5, 75, 4))
