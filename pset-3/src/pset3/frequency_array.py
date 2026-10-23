@@ -1,5 +1,13 @@
 """Rosalind BA1K: Generate the Frequency Array of a String."""
 
+def findValue(kmer: str) -> int:
+    nucleotides = {"A": 0, "C": 1, "G": 2, "T": 3}
+    value = 0 
+    
+    for char in kmer:
+        value = (value * 4) + nucleotides[char]
+        
+    return value
 
 def frequencyArray(rosalind: bool, text: str, k: int) -> list[int]:
     """Return counts for all 4**k DNA k-mers in lexicographic order.
@@ -13,35 +21,29 @@ def frequencyArray(rosalind: bool, text: str, k: int) -> list[int]:
     nucleotides = ["A", "C", "G", "T"]
 
     # base 4, ie k = 4 has 256 options. so base 4 is 1, 4, 16, 64
-    # base 3 has 64 options. 1, 3, 9 (?)
-    # base 2 has 16 options 1, 2 (?).
-    # these values multiply by what letter is at each index. so (base 3) CAD = 
-    # AAA = index 0. 9*0 + 3*0 + 1*0 = 0.
-    # DDD = index 80. 9*3 +  
+    # k = 3 has 64 options, 1, 4, 16
+    # k =2 has 16 options
+    # A=0, B=1, C=2, D=3
+    # AAA = 0. 
+    # DDD = 63 = 16*3 + 4*3 + 1*3
 
-    # AAAA = 0, AABA = 
-    for i in range(k)
+    # Looks at the kmer, adds 1 to the array index it corresponds to.
 
-
-    for first in nucleotides:
-        for second in nucleotides:
-            pair = first + second
-            freqArray[pair] = 0
-
-    for i in range(len(text) - k):
+    for i in range(len(text)-k):
         kmer = text[i:i+k]
-        freqArray[kmer] += 1
+        val = findValue(kmer)
+        freqArray[val] += 1
+
 
     if rosalind:
         returned = ""
-        for value in freqArray.values():
-            returned = str(value) + " "
-
+        for i in range(len(freqArray)):
+            returned = returned + str(freqArray[i]) + " "
         return returned.strip()
-
     else:
         return freqArray
     raise NotImplementedError("Implement frequencyArray for Rosalind BA1K.")
 
 
-print(frequencyArray(True, "AACCGGTAGCTGGTCCGAGGATGCAACTATAGACTTGGACGAGCCTACTTTAAACGCCTTTGAAGTTCTTTATTCTTACGGTCCTCTACAACTAGCGAGCAGGTGAAGTGCATCATAAACAAAAGTAGATCCTTGACGCGGCAACGGGATGGTCAATACGTACCATAGGAATATACGGGTCGGAAGTTTGCATCCAGATGTCGAACTCCAAAAAAAATGTTACTGTCCCTCTAGCGTGACGAGCTAGAACAAAATGGTTAAGAGGAGAAATTATTACTACACTGGTCCCTGTATCCGCAAGTCAGTCAAGGAGGTAGTGTTGTCGCGGGTAATATTGACCATCGCTAATGCATACTGCGTGCTACAATTGGAACGTTTGGTCCATGGGTGGTCGTAGTTTGCTTAACGACCATAGACGGACATGATAAGGAAAGGGTATCATGTAGCCATGTCGCGAGGACTAACCACGGTCCGGTCAACCCGCTCCGCGTCAACTGTGGCCACTCTGTAGTTTTTCCATGCAACATGCATTGTCAAGATGTGAACAACATGGTCTCCATTACAGTCATTTGGAAACTACATCCGGTAGTTATTAAGACATCTTAATATGCTTTTACACCCGGAGCTCCTATCTGATTACACTAGTACATAAGAGCTCGCCCTTAGTTAGGCAATTATCACTCCAGTTGCTTGAGTACCCACAGGTCATCATTATTTTG", 6))
+
+print(frequencyArray(True, "GTGCCGTTACTCTCGACTCAGGGGCTTCAAACAGTCCCCGAGGTAACAGTGTTGCGAATCGGGTGCCGGAATTACTCAGGCGGACCAGGTCGTCCCAGCATCCAGTATTAATTTTGCACAGAGACCGTTCTACAGGCTCGGCGGAAGCACACTAGGGCTACCGGCGGGAAGACATAGGCACGACCGTACTTCGTTCCATGGTTTTATATTCCCTGAACATACAGAAAGTACGTGGCTTTAATGCCCTGACTATCCTCGAAACGCTTGATGATTCCTTGGTTTAGGTCCCAGACACTTACGACCCAGCGTATGATCCTTGGAGCGCCGTGCTAATCGAGCCACTCTACTGGACTGCCAATGACACTGGCATGGGCAAGATTGGGATTGCTGTGAATCGTCCGTAACCTTCAAATTCGTAAAAGCTAGCCTTCCCGCCCTGAATTTTGAGTAGGACGTGTGCCACTCCCGTACGTCGTCCATCATGCCCGAAAACTGCACGCCCAGTAACCCAAGTTGATAAGTTTCCTTTTCTGGTACATATTTAAGGGTTACCGATGCTAGGTATACAAAGCATACCGCCGTTCCCGCATTGGTCTTCTCTATTATGAGTCGCGGGATCCCGTGCTAAATGTAGGGAGTCTGTATTAGCTCCACTAGCCGAGCATTACGGATAATATCTATGTGTTTGGACGCCACTGTCGAGATCCGTTCG", 6))
