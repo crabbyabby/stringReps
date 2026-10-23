@@ -8,4 +8,8 @@ def reverseComplement(text: str) -> str:
     nucleotides in reverse order.
     """
     # TODO: Implement the reverse complement.
+
+    text = text.replace("A", "t").replace("T", "a").replace("C", "g").replace("G", "c")
+    return text.upper()
+
     raise NotImplementedError("Implement reverseComplement for Rosalind BA1C.")
