@@ -2,12 +2,15 @@ import itertools
 from collections import defaultdict
 from pset4 import hammingDistance
 
-def neighbors(pattern: str, d: int):
+def find_neighbors(pattern: str, d: int):
+    pairs = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
     if d == 0:
         return {pattern}
+    if len(pattern) == 1:
+        return {'A', 'C', 'G', 'T'}
 
     neighbors = set()
-    short_neighbors = neighbors(pattern[1:], d)
+    short_neighbors = find_neighbors(pattern[1:], d)
 
     for kmer in short_neighbors:
         if hammingDistance(pattern[1:], kmer) < d:
@@ -17,13 +20,24 @@ def neighbors(pattern: str, d: int):
             neighbors.add(pattern[0] + kmer)
     return neighbors
 
+
 def frequentWordsWithMismatchesAndReverseComplements(text: str, k: int, d: int) -> set[str]:
-    # TODO: Write your code here.
-    bases = ['A', 'C', 'G', 'T']
+    counts = defaultdict(int)
 
+    for i in range(len(text)-k+1):
+        kmer = text[i:i+k]
+        near = find_neighbors(kmer, d)
 
-    # for i in range(len(text) - k):
-    #     # if 
+        for pattern in near:
+            counts[pattern] += 1
+
+    max_count = max(counts.values())
+    returned = []
+
+    for kmer, count in counts.items():
+        if count == max_count:
+            returned.append(kmer)
+    return returned
         
 
     raise NotImplementedError("Implement frequentWordsWithMismatchesAndReverseComplements")

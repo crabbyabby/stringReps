@@ -17,4 +17,4 @@ print(approximatePatternMatching(pattern, string, d))
 text = "ACGTTGCATGTCGCATGATGCATGAGAGCT"
 k = 4 
 d = 1
-print(frequentWordsWithMismatches(text, k, d))
+print(frequentWordsWithMismatchesAndReverseComplements(text, k, d))
