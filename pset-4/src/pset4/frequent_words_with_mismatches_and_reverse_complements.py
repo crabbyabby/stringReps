@@ -22,8 +22,8 @@ def frequentWordsWithMismatchesAndReverseComplements(text: str, k: int, d: int) 
     bases = ['A', 'C', 'G', 'T']
 
 
-    for i in range(len(text) - k):
-        if 
+    # for i in range(len(text) - k):
+    #     # if 
         
 
     raise NotImplementedError("Implement frequentWordsWithMismatchesAndReverseComplements")

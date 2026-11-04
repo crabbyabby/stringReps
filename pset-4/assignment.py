@@ -13,3 +13,8 @@ pattern = "ATTCTGGA"
 string = "CGCCCGAATCCAGAACGCATTCCCATATTTCGGGACCACTGGCCTCCACGGTACGGACGTCAATCAAATGCCTAGCGGCTTGTGGTTTCTCCTACGCTCC"
 d = 3
 print(approximatePatternMatching(pattern, string, d))
+
+text = "ACGTTGCATGTCGCATGATGCATGAGAGCT"
+k = 4 
+d = 1
+print(frequentWordsWithMismatches(text, k, d))
