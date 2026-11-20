@@ -22,8 +22,8 @@ def stringSpelledByGenomePath(patterns: list[str]) -> str:
     raise NotImplementedError("Implement stringSpelledByGenomePath")
 
 pattern = []
-file_path = Path(__file__).resolve().parent / "rosaline_ba3b.txt"
-with open("rosalind_ba3b.txt", "r", encoding="utf-8") as file:
+file_path = Path(__file__).resolve().parent / "rosaline_ba3c.txt"
+with open("rosalind_ba3c.txt", "r", encoding="utf-8") as file:
     for line in file:
         pattern.append(line.strip())
 
