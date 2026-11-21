@@ -29,10 +29,18 @@ def frequencyArray(text: str, k: int) -> list[int]:
 
     # Looks at the kmer, adds 1 to the array index it corresponds to.
 
-    for i in range(len(text)-k):
+    for i in range(len(text)-k+1):
         kmer = text[i:i+k]
         val = findValue(kmer)
         freqArray[val] += 1
 
     return freqArray
     raise NotImplementedError("Implement frequencyArray for Rosalind BA1K.")
+
+print(frequencyArray("TTTGCCAAAA", 1))
+expected = [4, 2, 1, 3]
+
+print(frequencyArray("ACGCGGCTCTGAAA", 2))
+expected = [
+    2, 1, 0, 0, 0, 0, 2, 2, 1, 2, 1, 0, 0, 1, 1, 0
+]
