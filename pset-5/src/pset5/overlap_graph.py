@@ -20,7 +20,7 @@ def overlapGraph(patterns: list[str]) -> list[list[str]]:
                     graph.setdefault(kmer, []).append(kmer2)
  
     graph = dict(sorted(graph.items(), key=lambda item: item[0]))
-    return graph
+    return [[k] + v for k, v in sorted(graph.items())]
 
 
     raise NotImplementedError("Implement overlapGraph")
@@ -32,6 +32,8 @@ with open("rosalind_ba3c.txt", "r", encoding="utf-8") as file:
         lst.append(line.strip())
 
 graph = overlapGraph(lst)
-with open("output.txt", "w", encoding="utf-8") as file:
-    for node, edge in graph.items():
-        file.write(f"{node} -> {edge[0]}\n")
+# with open("output.txt", "w", encoding="utf-8") as file:
+#     for node, edge in graph.items():
+#         file.write(f"{node} -> {edge[0]}\n")
+
+print(graph)
